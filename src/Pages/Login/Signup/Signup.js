@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Signup = () => {
-  const { emailAndPasswordSignUp } = useContext(AuthContext);
+  const { emailAndPasswordSignUp, updateUserProfile } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(true);
 
   const handleEmailAndPasswordSignUp = (event) => {
@@ -23,7 +23,18 @@ const Signup = () => {
         const user = result.user;
         console.log(user);
         form.reset();
+        handleUpdateUserProfile(name, photoURL);
       })
+      .catch((e) => console.log(e));
+  };
+
+  const handleUpdateUserProfile = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+    updateUserProfile(profile)
+      .then(() => {})
       .catch((e) => console.log(e));
   };
 
