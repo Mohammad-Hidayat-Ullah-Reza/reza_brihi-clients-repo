@@ -6,10 +6,10 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const GoogleSignIn = () => {
   const { providerLogin } = useContext(AuthContext);
-  const provider = new GoogleAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
 
   const handleGoogleLogin = () => {
-    providerLogin(provider)
+    providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);

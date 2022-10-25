@@ -5,10 +5,10 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const GithubSignIn = () => {
   const { providerLogin } = useContext(AuthContext);
-  const provider = new GithubAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const handleGithubLogin = () => {
-    providerLogin(provider)
+    providerLogin(githubProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);
