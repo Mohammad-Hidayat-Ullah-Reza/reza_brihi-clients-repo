@@ -89,9 +89,9 @@ const Signup = () => {
           {/* --------------checkbox end------------------ */}
 
           <div className="flex items-center">
-            <span className="w-full h-1 border-b-2 border-black"></span>
+            <span className="w-full h-1 border-b-2 border-gray-400"></span>
             <span className="mx-2">or</span>
-            <span className="w-full h-1 border-b-2 border-black"></span>
+            <span className="w-full h-1 border-b-2 border-gray-400"></span>
           </div>
 
           {/* ----------------button start--------------- */}
@@ -106,7 +106,7 @@ const Signup = () => {
             </button>
           </div>
           <button
-            className="p-2 w-fit my-7 mx-auto px-10 border-2 border-slate-100 hover:border-blue-700  shadow-md rounded-full text-xl font-semibold hover:text-blue-700 hover:-translate-y-1"
+            className="p-2 w-fit my-7 mx-auto px-10 border-2 border-slate-100 hover:border-red-600  shadow-md rounded-full text-xl font-semibold hover:text-red-700 hover:-translate-y-1"
             type="submit"
           >
             Create account
