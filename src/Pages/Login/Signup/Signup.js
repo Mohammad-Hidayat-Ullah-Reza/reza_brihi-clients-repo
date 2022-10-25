@@ -2,9 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
 import { useState } from "react";
+import GoogleSignIn from "../../Shared/GoogleSignIn/GoogleSignIn";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(true);
+
   return (
     <div className="lg:grid grid-cols-5">
       <div className="col-span-2">
@@ -96,10 +98,7 @@ const Signup = () => {
 
           {/* ----------------button start--------------- */}
           <div className="flex items-center justify-around my-3">
-            <button className="p-2 border-2 border-slate-100 hover:border-yellow-400 shadow-md rounded-full flex items-center  hover:-translate-y-1">
-              <FaGoogle className="mr-2"></FaGoogle>
-              Sign up with Google
-            </button>
+            <GoogleSignIn></GoogleSignIn>
             <button className="p-2 border-2 border-slate-100 hover:border-black  shadow-md rounded-full flex items-center hover:text-gray-800 hover:-translate-y-1">
               <FaGithub className="mr-2"></FaGithub>
               Sign up with Github
