@@ -5,11 +5,11 @@ import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const GoogleSignIn = () => {
-  const { googleProviderLogin } = useContext(AuthContext);
+  const { providerLogin } = useContext(AuthContext);
   const provider = new GoogleAuthProvider();
 
   const handleGoogleLogin = () => {
-    googleProviderLogin(provider)
+    providerLogin(provider)
       .then((result) => {
         const user = result.user;
         console.log(user);
