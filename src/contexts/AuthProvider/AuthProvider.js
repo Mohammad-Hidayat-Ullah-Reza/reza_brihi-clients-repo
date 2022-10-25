@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { createContext } from "react";
-import { getAuth, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import app from "../../firebase/firebase.config";
 import { useEffect } from "react";
 
@@ -12,6 +18,14 @@ const AuthProvider = ({ children }) => {
 
   const googleProviderLogin = (provider) => {
     return signInWithPopup(auth, provider);
+  };
+
+  const emailAndPasswordSignUp = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const emailAndPasswordLogIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   useEffect(() => {
@@ -26,7 +40,12 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  const authInfo = { googleProviderLogin, user };
+  const authInfo = {
+    googleProviderLogin,
+    user,
+    emailAndPasswordSignUp,
+    emailAndPasswordLogIn,
+  };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

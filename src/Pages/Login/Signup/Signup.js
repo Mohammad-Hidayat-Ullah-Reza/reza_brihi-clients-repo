@@ -1,11 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
 import { useState } from "react";
 import GoogleSignIn from "../../Shared/GoogleSignIn/GoogleSignIn";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Signup = () => {
+  const { emailAndPasswordSignUp } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(true);
+
+  const handleEmailAndPasswordSignUp = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    emailAndPasswordSignUp(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+      })
+      .catch((e) => console.log(e));
+  };
 
   return (
     <div className="lg:grid grid-cols-5">
@@ -16,102 +36,109 @@ const Signup = () => {
         />
       </div>
       <div className="col-span-3 m-5 flex flex-col items-center justify-center">
-        <div className="form-control w-full max-w-xl">
-          <h4 className="text-3xl font-bold">
-            Sign <span className="text-red-600">Up</span>
-          </h4>
-          <p className="mt-2 mb-4">
-            Already have an account?{" "}
-            <Link to="/login" className="text-red-600">
-              Log in
-            </Link>
-          </p>
+        <form onSubmit={handleEmailAndPasswordSignUp} className="w-full">
+          <div className="form-control w-full max-w-xl mx-auto">
+            <h4 className="text-3xl font-bold">
+              Sign <span className="text-red-600">Up</span>
+            </h4>
+            <p className="mt-2 mb-4">
+              Already have an account?{" "}
+              <Link to="/login" className="text-red-600">
+                Log in
+              </Link>
+            </p>
 
-          {/* --------------Input Field Start -------------- */}
-          <label className="label">
-            <span className="label-text">Name</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="input input-bordered w-full max-w-xl"
-          />
-          <label className="label">
-            <span className="label-text">Photo URL</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Your Photo URL"
-            className="input input-bordered w-full max-w-xl"
-          />
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
-          <input
-            type="email"
-            placeholder="examples@gnail.com"
-            className="input input-bordered w-full max-w-xl"
-          />
-          <label className="label">
-            <span className="label-text">Password</span>
-          </label>
-          <input
-            type={showPassword ? "password" : "text"}
-            placeholder="Enter Password"
-            className="input input-bordered w-full max-w-xl"
-          />
-          <label
-            onClick={() => setShowPassword(!showPassword)}
-            className="label ml-auto hover:cursor-pointer"
-          >
-            {showPassword ? (
-              <>
-                <FaEye></FaEye>
-                <span className="label-text-alt ml-1">Show password</span>
-              </>
-            ) : (
-              <>
-                <FaEyeSlash></FaEyeSlash>
-                <span className="label-text-alt ml-1">Hide password</span>
-              </>
-            )}
-          </label>
-          {/* --------------Input Field end -------------- */}
-
-          {/* ----------checkbox start---------- */}
-          <div className="cursor-pointer flex justify-start items-center my-1">
+            {/* --------------Input Field Start -------------- */}
             <label className="label">
-              <input type="checkbox" className="checkbox mr-3" />
+              <span className="label-text">Full Name</span>
             </label>
-            <span className="label-text">
-              I agree to <span className="text-red-600">Terms of Service</span>{" "}
-              and <span className="text-red-600">Privacy Policy</span>
-            </span>
-          </div>
-          {/* --------------checkbox end------------------ */}
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Full Name"
+              className="input input-bordered w-full max-w-xl"
+            />
+            <label className="label">
+              <span className="label-text">Photo URL</span>
+            </label>
+            <input
+              type="text"
+              name="photoURL"
+              placeholder="Your Photo URL"
+              className="input input-bordered w-full max-w-xl"
+            />
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="examples@gnail.com"
+              className="input input-bordered w-full max-w-xl"
+            />
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type={showPassword ? "password" : "text"}
+              name="password"
+              placeholder="Enter Password"
+              className="input input-bordered w-full max-w-xl"
+            />
+            <label
+              onClick={() => setShowPassword(!showPassword)}
+              className="label ml-auto hover:cursor-pointer"
+            >
+              {showPassword ? (
+                <>
+                  <FaEye></FaEye>
+                  <span className="label-text-alt ml-1">Show password</span>
+                </>
+              ) : (
+                <>
+                  <FaEyeSlash></FaEyeSlash>
+                  <span className="label-text-alt ml-1">Hide password</span>
+                </>
+              )}
+            </label>
+            {/* --------------Input Field end -------------- */}
 
-          <div className="flex items-center">
-            <span className="w-full h-1 border-b-2 border-gray-400"></span>
-            <span className="mx-2">or</span>
-            <span className="w-full h-1 border-b-2 border-gray-400"></span>
-          </div>
+            {/* ----------checkbox start---------- */}
+            <div className="cursor-pointer flex justify-start items-center my-1">
+              <label className="label">
+                <input type="checkbox" className="checkbox mr-3" />
+              </label>
+              <span className="label-text">
+                I agree to{" "}
+                <span className="text-red-600">Terms of Service</span> and{" "}
+                <span className="text-red-600">Privacy Policy</span>
+              </span>
+            </div>
+            {/* --------------checkbox end------------------ */}
 
-          {/* ----------------button start--------------- */}
-          <div className="flex items-center justify-around my-3">
-            <GoogleSignIn></GoogleSignIn>
-            <button className="p-2 border-2 border-slate-100 hover:border-black  shadow-md rounded-full flex items-center hover:text-gray-800 hover:-translate-y-1">
-              <FaGithub className="mr-2"></FaGithub>
-              Sign up with Github
+            <div className="flex items-center">
+              <span className="w-full h-1 border-b-2 border-gray-400"></span>
+              <span className="mx-2">or</span>
+              <span className="w-full h-1 border-b-2 border-gray-400"></span>
+            </div>
+
+            {/* ----------------button start--------------- */}
+            <div className="flex items-center justify-around my-3">
+              <GoogleSignIn></GoogleSignIn>
+              <button className="p-2 border-2 border-slate-100 hover:border-black  shadow-md rounded-full flex items-center hover:text-gray-800 hover:-translate-y-1">
+                <FaGithub className="mr-2"></FaGithub>
+                Sign up with Github
+              </button>
+            </div>
+            <button
+              className="p-2 w-fit my-7 mx-auto px-10 border-2 border-slate-100 hover:border-red-600  shadow-md rounded-full text-xl font-semibold hover:text-red-700 hover:-translate-y-1"
+              type="submit"
+            >
+              Create account
             </button>
+            {/* ----------------button end--------------- */}
           </div>
-          <button
-            className="p-2 w-fit my-7 mx-auto px-10 border-2 border-slate-100 hover:border-red-600  shadow-md rounded-full text-xl font-semibold hover:text-red-700 hover:-translate-y-1"
-            type="submit"
-          >
-            Create account
-          </button>
-          {/* ----------------button end--------------- */}
-        </div>
+        </form>
       </div>
     </div>
   );
