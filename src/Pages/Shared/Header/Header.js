@@ -1,20 +1,38 @@
 import React from "react";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((e) => console.log(e));
+  };
+
   return (
     <div className="sticky top-0">
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">rezabrihi</a>
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
+            <img
+              className="w-20 mr-2"
+              src="/logo.png"
+              alt="logo of rezabrihi"
+            />
+            REZABRIHI
+          </Link>
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal p-0">
             <li>
-              <a>Item 1</a>
+              <Link to="/blog">Blog</Link>
             </li>
             <li tabIndex={0}>
-              <a>
-                Parent
+              <Link to="courses">
+                Courses
                 <svg
                   className="fill-current"
                   xmlns="http://www.w3.org/2000/svg"
@@ -24,45 +42,64 @@ const Header = () => {
                 >
                   <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
                 </svg>
-              </a>
+              </Link>
               <ul className="p-2 bg-base-100">
                 <li>
-                  <a>Submenu 1</a>
+                  <Link>Front End Development</Link>
                 </li>
                 <li>
-                  <a>Submenu 2</a>
+                  <Link>Back End Development</Link>
+                </li>
+                <li>
+                  <Link>Full Stack Development</Link>
+                </li>
+                <li>
+                  <Link>Php Programming</Link>
+                </li>
+                <li>
+                  <Link>Learn Flutter</Link>
+                </li>
+                <li>
+                  <Link>MEVN Stack Development</Link>
                 </li>
               </ul>
             </li>
             <li>
-              <a>Item 3</a>
+              <Link to="faq">FAQ</Link>
             </li>
           </ul>
         </div>
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="https://placeimg.com/80/80/people" />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
-        </div>
+        {user?.uid ? (
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src={user?.photoURL} alt="user" />
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <Link to="profile" className="justify-between">
+                  Profile
+                </Link>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleLogOut()}
+                  className="justify-between btn btn-accent text-white"
+                >
+                  Log Out
+                </button>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <Link to="/login" className="btn btn-info">
+            Log In
+          </Link>
+        )}
       </div>
     </div>
   );

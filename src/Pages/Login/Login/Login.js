@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import GithubSignIn from "../../Shared/GithubSignIn/GithubSignIn";
 import GoogleSignIn from "../../Shared/GoogleSignIn/GoogleSignIn";
 
 const Login = () => {
@@ -91,10 +92,7 @@ const Login = () => {
             {/* ----------------button start--------------- */}
             <div className="flex items-center justify-around my-3">
               <GoogleSignIn></GoogleSignIn>
-              <button className="p-2 border-2 border-slate-100 hover:border-black  shadow-md rounded-full flex items-center hover:text-gray-800 hover:-translate-y-1">
-                <FaGithub className="mr-2"></FaGithub>
-                Sign up with Github
-              </button>
+              <GithubSignIn></GithubSignIn>
             </div>
             <button
               className="p-2 w-fit my-7 mx-auto px-10 border-2 border-slate-100 hover:border-red-600  shadow-md rounded-full text-xl font-semibold hover:text-red-700 hover:-translate-y-1"
