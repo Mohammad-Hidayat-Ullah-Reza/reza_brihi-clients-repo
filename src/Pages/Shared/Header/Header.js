@@ -35,7 +35,7 @@ const Header = () => {
               <Link to="/blog">Blog</Link>
             </li>
             <li tabIndex={0}>
-              <Link to="courses">
+              <Link to="/courses">
                 Courses
                 <svg
                   className="fill-current"
