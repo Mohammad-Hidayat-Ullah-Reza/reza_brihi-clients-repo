@@ -16,16 +16,20 @@ const Header = () => {
     <div className="sticky top-0 z-50">
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <Link to="/" className="btn btn-ghost normal-case text-md md:text-xl">
+          <Link
+            to="/"
+            className="btn btn-ghost normal-case text-md text-red-700 md:text-xl"
+          >
             <img
               className="w-10 md:w-20 mr-2"
               src="/logo.png"
               alt="logo of rezabrihi"
+              title="rezabrihi"
             />
             REZABRIHI
           </Link>
         </div>
-        <div className="hidden md:flex-none">
+        <div className="hidden md:block flex-none">
           <ul className="menu menu-horizontal p-0">
             <li>
               <Link to="/blog">Blog</Link>
@@ -69,11 +73,17 @@ const Header = () => {
             </li>
           </ul>
         </div>
+
+        {/* --------profile picture or login button-------- */}
         {user?.uid ? (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src={user?.photoURL} alt="user" />
+                <img
+                  src={user?.photoURL}
+                  alt="user"
+                  title={user?.displayName}
+                />
               </div>
             </label>
             <ul
@@ -106,11 +116,14 @@ const Header = () => {
           </div>
         ) : (
           <>
-            <Link to="/login" className="btn btn-info">
+            <Link
+              to="/login"
+              className="btn bg-red-600 border border-red-600 hover:bg-red-800 text-white"
+            >
               Log In
             </Link>
             {/* --------hamburger menu-------- */}
-            <div className="navbar-end w-fit ml-3">
+            <div className="navbar-end w-fit ml-3 md:hidden">
               <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost btn-circle">
                   <svg
