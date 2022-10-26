@@ -4,8 +4,9 @@ import CoursesCard from "../Shared/CoursesCard/CoursesCard";
 
 const Courses = () => {
   const coursesDetails = useLoaderData();
+
   return (
-    <div className="grid grid-cols-9">
+    <div className="grid grid-cols-11">
       {/* --------sidebar start--------- */}
       <div className="hidden md:col-span-2 md:flex flex-col items-start ">
         {coursesDetails.map((courseDetails) => (
@@ -15,7 +16,7 @@ const Courses = () => {
         ))}
       </div>
       {/* --------sidebar end--------- */}
-      <div className="col-span-9 md:col-span-7">
+      <div className="col-span-11 md:col-span-9">
         {/* ---------Hero start--------- */}
         <div>
           <div

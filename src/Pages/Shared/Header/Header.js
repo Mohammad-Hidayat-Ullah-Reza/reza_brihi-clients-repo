@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import Swap from "../Swap/Swap";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -15,6 +16,7 @@ const Header = () => {
   return (
     <div className="sticky top-0 z-50">
       <div className="navbar bg-base-100">
+        {/* -------navbar logo and site name start--------- */}
         <div className="flex-1">
           <Link
             to="/"
@@ -29,6 +31,8 @@ const Header = () => {
             REZABRIHI
           </Link>
         </div>
+        {/* -------navbar logo and site name end--------- */}
+
         <div className="hidden md:block flex-none">
           <ul className="menu menu-horizontal p-0">
             <li>
@@ -74,6 +78,12 @@ const Header = () => {
           </ul>
         </div>
 
+        {/* --------swap start-------- */}
+        <div className="hidden md:block">
+          <Swap></Swap>
+        </div>
+        {/* --------swap end-------- */}
+
         {/* --------profile picture or login button-------- */}
         {user?.uid ? (
           <div className="dropdown dropdown-end">
@@ -112,6 +122,9 @@ const Header = () => {
                   Log Out
                 </button>
               </li>
+              <li>
+                <Swap></Swap>
+              </li>
             </ul>
           </div>
         ) : (
@@ -122,6 +135,7 @@ const Header = () => {
             >
               Log In
             </Link>
+
             {/* --------hamburger menu-------- */}
             <div className="navbar-end w-fit ml-3 md:hidden">
               <div className="dropdown">
@@ -153,6 +167,9 @@ const Header = () => {
                   </li>
                   <li>
                     <Link to="/faq">FAQ</Link>
+                  </li>
+                  <li>
+                    <Swap></Swap>
                   </li>
                 </ul>
               </div>
