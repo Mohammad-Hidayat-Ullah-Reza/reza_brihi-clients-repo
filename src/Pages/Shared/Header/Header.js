@@ -13,19 +13,19 @@ const Header = () => {
   };
 
   return (
-    <div className="sticky top-0 ">
+    <div className="sticky top-0 z-50">
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <Link to="/" className="btn btn-ghost normal-case text-xl">
+          <Link to="/" className="btn btn-ghost normal-case text-md md:text-xl">
             <img
-              className="w-20 mr-2"
+              className="w-10 md:w-20 mr-2"
               src="/logo.png"
               alt="logo of rezabrihi"
             />
             REZABRIHI
           </Link>
         </div>
-        <div className="flex-none">
+        <div className="hidden md:flex-none">
           <ul className="menu menu-horizontal p-0">
             <li>
               <Link to="/blog">Blog</Link>
@@ -81,6 +81,15 @@ const Header = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
+                <Link to="/blog">Blog</Link>
+              </li>
+              <li>
+                <Link to="/courses">Courses</Link>
+              </li>
+              <li>
+                <Link to="/faq">FAQ</Link>
+              </li>
+              <li>
                 <Link to="profile" className="justify-between">
                   Profile
                 </Link>
@@ -96,9 +105,46 @@ const Header = () => {
             </ul>
           </div>
         ) : (
-          <Link to="/login" className="btn btn-info">
-            Log In
-          </Link>
+          <>
+            <Link to="/login" className="btn btn-info">
+              Log In
+            </Link>
+            {/* --------hamburger menu-------- */}
+            <div className="navbar-end w-fit ml-3">
+              <div className="dropdown">
+                <label tabIndex={0} className="btn btn-ghost btn-circle">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h7"
+                    />
+                  </svg>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-fit right-0"
+                >
+                  <li>
+                    <Link to="/blog">Blog</Link>
+                  </li>
+                  <li>
+                    <Link to="/courses">Courses</Link>
+                  </li>
+                  <li>
+                    <Link to="/faq">FAQ</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </div>

@@ -4,12 +4,12 @@ import Accordion from "../Shared/Accordion/Accordion";
 
 const FAQ = () => {
   const faqs = useLoaderData();
-  console.log(faqs);
   return (
-    <div className="grid grid-cols-2">
+    <div className="lg:grid grid-cols-2">
       {/* --------img start-------- */}
       <div>
         <img
+          className="w-full"
           src="https://img.freepik.com/free-vector/faq-concept_23-2148160290.jpg?w=740&t=st=1666743228~exp=1666743828~hmac=2f89d21d77d9a8acc83c165cda297f8cc5f323a83131e40e5504ac58f17a5087"
           alt=""
         />
