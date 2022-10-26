@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const CoursesCard = ({ courseDetails }) => {
-  const { img, course_name, course_desc } = courseDetails;
+const CoursesCard = ({ courseInfo }) => {
+  const { id, img, course_name, course_desc } = courseInfo;
   return (
-    <div className="card m-10 bg-base-100 shadow-xl">
+    <div className="card m-10 bg-base-100 shadow-xl hover:-translate-y-3">
       <figure className="px-10 pt-10">
         <img src={img} alt={course_name} className="rounded-xl max-h-40" />
       </figure>
@@ -14,7 +15,9 @@ const CoursesCard = ({ courseDetails }) => {
           <span className="text-red-900">...</span>
         </p>
         <div className="card-actions w-full">
-          <button className="btn w-full bg-red-700 mt-2">See Detail</button>
+          <Link to={`/courses/${id}`} className="btn w-full bg-red-700 mt-2">
+            See Detail
+          </Link>
         </div>
       </div>
     </div>

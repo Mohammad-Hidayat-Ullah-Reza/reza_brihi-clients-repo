@@ -3,15 +3,19 @@ import { Link, useLoaderData } from "react-router-dom";
 import CoursesCard from "../Shared/CoursesCard/CoursesCard";
 
 const Courses = () => {
-  const coursesDetails = useLoaderData();
+  const coursesInfo = useLoaderData();
 
   return (
     <div className="grid grid-cols-11">
       {/* --------sidebar start--------- */}
       <div className="hidden md:col-span-2 md:flex flex-col items-start ">
-        {coursesDetails.map((courseDetails) => (
-          <Link className="mb-3 btn btn-ghost text-left" key={courseDetails.id}>
-            {courseDetails.course_name}
+        {coursesInfo.map((courseInfo) => (
+          <Link
+            to={`/courses/${courseInfo.id}`}
+            className="mb-3 btn btn-ghost text-left"
+            key={courseInfo.id}
+          >
+            {courseInfo.course_name}
           </Link>
         ))}
       </div>
@@ -45,10 +49,10 @@ const Courses = () => {
             Available courses
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 pt-10">
-            {coursesDetails.map((courseDetails) => (
+            {coursesInfo.map((courseInfo) => (
               <CoursesCard
-                key={courseDetails.id}
-                courseDetails={courseDetails}
+                key={courseInfo.id}
+                courseInfo={courseInfo}
               ></CoursesCard>
             ))}
           </div>
