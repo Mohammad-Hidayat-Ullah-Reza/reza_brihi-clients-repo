@@ -9,8 +9,11 @@ const PrivateRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="radial-progress" style={{ "--value": 70 }}>
-        70%
+      <div className="flex justify-center items-center w-screen h-screen">
+        <div
+          className="animate-spin radial-progress w-20 h-20"
+          style={{ "--value": 70 }}
+        ></div>
       </div>
     );
   }
