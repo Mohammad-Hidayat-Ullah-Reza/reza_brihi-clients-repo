@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import GithubSignIn from "../../Shared/GithubSignIn/GithubSignIn";
 import GoogleSignIn from "../../Shared/GoogleSignIn/GoogleSignIn";
@@ -9,6 +9,10 @@ import GoogleSignIn from "../../Shared/GoogleSignIn/GoogleSignIn";
 const Login = () => {
   const { emailAndPasswordLogIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleEmailAndPasswordLogIn = (event) => {
     event.preventDefault();
@@ -18,8 +22,8 @@ const Login = () => {
     emailAndPasswordLogIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         form.reset();
+        navigate(from, { replace: true });
       })
       .catch((e) => console.log(e));
   };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
 import { useState } from "react";
 import GoogleSignIn from "../../Shared/GoogleSignIn/GoogleSignIn";
@@ -10,6 +10,7 @@ import GithubSignIn from "../../Shared/GithubSignIn/GithubSignIn";
 const Signup = () => {
   const { emailAndPasswordSignUp, updateUserProfile } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(true);
+  const navigate = useNavigate();
 
   const handleEmailAndPasswordSignUp = (event) => {
     event.preventDefault();
@@ -22,8 +23,8 @@ const Signup = () => {
     emailAndPasswordSignUp(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         form.reset();
+        navigate("/");
         handleUpdateUserProfile(name, photoURL);
       })
       .catch((e) => console.log(e));
