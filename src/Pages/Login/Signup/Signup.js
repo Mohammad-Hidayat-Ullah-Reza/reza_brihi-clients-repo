@@ -70,6 +70,7 @@ const Signup = () => {
               name="name"
               placeholder="Your Full Name"
               className="input input-bordered w-full max-w-xl"
+              required
             />
             <label className="label">
               <span className="label-text">Photo URL</span>
@@ -79,6 +80,7 @@ const Signup = () => {
               name="photoURL"
               placeholder="Your Photo URL"
               className="input input-bordered w-full max-w-xl"
+              required
             />
             <label className="label">
               <span className="label-text">Email</span>
@@ -88,6 +90,7 @@ const Signup = () => {
               name="email"
               placeholder="examples@gnail.com"
               className="input input-bordered w-full max-w-xl"
+              required
             />
             <label className="label">
               <span className="label-text">Password</span>
@@ -97,6 +100,7 @@ const Signup = () => {
               name="password"
               placeholder="Enter Password"
               className="input input-bordered w-full max-w-xl"
+              required
             />
             <label
               onClick={() => setShowPassword(!showPassword)}
@@ -119,7 +123,7 @@ const Signup = () => {
             {/* ----------checkbox start---------- */}
             <div className="cursor-pointer flex justify-start items-center my-1">
               <label className="label">
-                <input type="checkbox" className="checkbox mr-3" />
+                <input type="checkbox" className="checkbox mr-3" required />
               </label>
               <span className="label-text">
                 I agree to{" "}

@@ -9,6 +9,8 @@ import GoogleSignIn from "../../Shared/GoogleSignIn/GoogleSignIn";
 const Login = () => {
   const { emailAndPasswordLogIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(true);
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -25,7 +27,22 @@ const Login = () => {
         form.reset();
         navigate(from, { replace: true });
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        const errorCode = e.code;
+        console.log(errorCode);
+
+        if (errorCode === "auth/user-not-found") {
+          setEmailError("Email not found");
+        } else {
+          setEmailError("");
+        }
+
+        if (errorCode === "auth/wrong-password") {
+          setPasswordError("Password doesn't match");
+        } else {
+          setPasswordError("");
+        }
+      });
   };
 
   return (
@@ -59,7 +76,15 @@ const Login = () => {
               name="email"
               placeholder="examples@gnail.com"
               className="input input-bordered w-full max-w-xl"
+              required
             />
+            {emailError && (
+              <label className="label">
+                <span className="label-text-alt text-red-900">
+                  {emailError}
+                </span>
+              </label>
+            )}
             <label className="label">
               <span className="label-text">Password</span>
             </label>
@@ -68,19 +93,28 @@ const Login = () => {
               name="password"
               placeholder="Enter Password"
               className="input input-bordered w-full max-w-xl"
+              required
             />
+
             <label
               onClick={() => setShowPassword(!showPassword)}
-              className="label ml-auto hover:cursor-pointer"
+              className="label hover:cursor-pointer"
             >
+              {passwordError && (
+                <label className="label">
+                  <span className="label-text-alt text-red-900">
+                    {passwordError}
+                  </span>
+                </label>
+              )}
               {showPassword ? (
                 <>
-                  <FaEye></FaEye>
+                  <FaEye className="ml-auto"></FaEye>
                   <span className="label-text-alt ml-1">Show password</span>
                 </>
               ) : (
                 <>
-                  <FaEyeSlash></FaEyeSlash>
+                  <FaEyeSlash className="ml-auto"></FaEyeSlash>
                   <span className="label-text-alt ml-1">Hide password</span>
                 </>
               )}

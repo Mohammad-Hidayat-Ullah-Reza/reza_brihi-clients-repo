@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Pdf from "react-to-pdf";
-import { FaFilePdf } from "react-icons/fa";
+import { FaDollarSign, FaFilePdf } from "react-icons/fa";
 
 const CourseDetail = () => {
   const courseInfo = useLoaderData();
@@ -50,6 +50,7 @@ const CourseDetail = () => {
             to={`/courses/${id}/checkout`}
             className="btn text-md md:text-xl text-fuchsia-900 border-none bg-gradient-to-r  from-amber-200 hover:from-yellow-300  via-yellow-300 hover:via-yellow-300 to-yellow-300 hover:to-amber-200 shadow-lg hover:-translate-y-2 "
           >
+            <FaDollarSign />
             Get Premium Access
           </Link>
         </div>
