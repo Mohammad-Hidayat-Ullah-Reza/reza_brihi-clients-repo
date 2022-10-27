@@ -12,7 +12,8 @@
 4. Private route for checkout page.
 5. Interactive daisy ui theme.
 6. Various Course Options.
-7.
+7. Blog page has interesting articles.
+8. Faq page
 
 ### Technologies Used:
 

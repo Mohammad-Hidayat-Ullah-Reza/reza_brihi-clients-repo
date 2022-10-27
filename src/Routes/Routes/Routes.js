@@ -9,12 +9,17 @@ import Signup from "../../Pages/Login/Signup/Signup";
 import CourseDetail from "../../Pages/CourseDetail/CourseDetail";
 import Checkout from "../../Pages/Checkout/Checkout";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Home from "../../Pages/Home/Home";
 
 export const routes = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
     children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
       {
         path: "/signup",
         element: <Signup></Signup>,
