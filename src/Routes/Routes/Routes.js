@@ -31,23 +31,34 @@ export const routes = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog></Blog>,
-        loader: () => fetch("http://localhost:5000/blog"),
+        loader: () =>
+          fetch(
+            "https://b610-learning-platform-server-side-eight.vercel.app/blog"
+          ),
       },
       {
         path: "/faq",
         element: <FAQ></FAQ>,
-        loader: () => fetch(`http://localhost:5000/faq`),
+        loader: () =>
+          fetch(
+            `https://b610-learning-platform-server-side-eight.vercel.app/faq`
+          ),
       },
       {
         path: "/courses",
         element: <Courses></Courses>,
-        loader: () => fetch(`http://localhost:5000/courses`),
+        loader: () =>
+          fetch(
+            `https://b610-learning-platform-server-side-eight.vercel.app/courses`
+          ),
       },
       {
         path: "/courses/:id",
         element: <CourseDetail></CourseDetail>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/courses/${params.id}`),
+          fetch(
+            `https://b610-learning-platform-server-side-eight.vercel.app/courses/${params.id}`
+          ),
       },
       {
         path: "courses/:id/checkout",
@@ -57,7 +68,9 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/courses/${params.id}`),
+          fetch(
+            `https://b610-learning-platform-server-side-eight.vercel.app/courses/${params.id}`
+          ),
       },
     ],
   },

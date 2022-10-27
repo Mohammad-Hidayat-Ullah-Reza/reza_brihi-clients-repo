@@ -79,11 +79,6 @@ const Header = () => {
                 <Link to="/faq">FAQ</Link>
               </li>
               <li>
-                <Link to="profile" className="justify-between">
-                  Profile
-                </Link>
-              </li>
-              <li>
                 <button
                   onClick={() => handleLogOut()}
                   className="justify-between btn btn-accent text-white"
